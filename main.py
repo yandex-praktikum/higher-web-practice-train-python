@@ -19,7 +19,7 @@ def main() -> None:
     try:
         sorting_hill.register_handler(SortingOperatorImpl)
         sorting_hill.register_handler(SortingReporterImpl)
-    except Exception as e:
+    except Exception:
         print('Нет зарегистрированных операторов, работы не выполняются.')
 
     wagon_left = max(1024, random.randint(1024, 4095))
@@ -37,7 +37,7 @@ def main() -> None:
             if sorting_hill.check_event(next_event) is not None:
                 print(f'Команда дежурного: {next_event}')
                 sorting_hill.handle_event(next_event)
-                # time.sleep(random.uniform(0, 0.1))
+                time.sleep(random.uniform(0, 0.1))
         except HiddenException as he:
             print(f'watch reject: {he}')
         except RuntimeError as e:
