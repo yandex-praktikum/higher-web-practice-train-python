@@ -6,7 +6,7 @@ import time
 from sorting_handler.sorting_operator import SortingOperatorImpl
 from sorting_handler.sorting_reporter import SortingReporterImpl
 from sorting_hill.consts import EVENTS_BALANCED, EventType, WagonType
-from sorting_hill.sorting_hill import HiddenException, HiddenWatchImpl, SortingHill
+from sorting_hill.sorting_hill import SortingHill
 
 
 def main() -> None:
@@ -14,7 +14,6 @@ def main() -> None:
 
     number_of_paths = max(2, random.randint(0, 15))
     sorting_hill = SortingHill(number_of_paths)
-    sorting_hill.hidden_watch_handler = HiddenWatchImpl(sorting_hill)
 
     try:
         sorting_hill.register_handler(SortingOperatorImpl)
@@ -38,8 +37,6 @@ def main() -> None:
                 print(f'Команда дежурного: {next_event}')
                 sorting_hill.handle_event(next_event)
                 time.sleep(random.uniform(0, 0.1))
-        except HiddenException as he:
-            print(f'watch reject: {he}')
         except RuntimeError as e:
             print(f'Произошла ошибка обработки: {e}')
 
