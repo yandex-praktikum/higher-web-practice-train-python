@@ -1,7 +1,7 @@
 import random
 
 from sorting_handler.interface import SortingHandler
-from sorting_hill.consts import EventType, LocoType, TrainType, WagonType
+from sorting_hill.consts import EventType, LocoType
 
 class SortingHill:
     """Класс для запуска сервиса"""
